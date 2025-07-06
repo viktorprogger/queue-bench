@@ -7,15 +7,7 @@ RUN apk --no-cache add \
     linux-headers \
     > /dev/null
 
-# install xDebug
-ENV XDEBUG_MODE=debug
-ENV XDEBUG_CONFIG=""
-RUN apk add --update --no-cache --virtual .build-dependencies $PHPIZE_DEPS \
-    && docker-php-ext-install pcntl sockets \
-    && pecl install xdebug pcov \
-    && docker-php-ext-enable xdebug pcov \
-    && pecl clear-cache \
-    && apk del .build-dependencies
+RUN docker-php-ext-install pcntl sockets
 
 COPY composer.* /app/
 WORKDIR /app
