@@ -1,0 +1,25 @@
+services:
+  php:
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    container_name: yii-queue-amqp-php
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+
+  rabbitmq:
+    image: rabbitmq:3-alpine
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 3s
+      timeout: 5s
+      retries: 3

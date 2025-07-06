@@ -1,0 +1,4 @@
+services:
+  php:
+    extra_hosts:
+      - host.docker.internal:${DOCKER_HOST_IP:-172.17.0.1}

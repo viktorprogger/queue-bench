@@ -1,0 +1,20 @@
+{
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.4",
+        "yiisoft/queue": "dev-master",
+        "yiisoft/queue-amqp": "dev-master",
+        "symfony/messenger": "^7.3",
+        "jwage/phpamqplib-messenger": "^0.8.4"
+    },
+    "require-dev": {
+        "phpbench/phpbench": "^1.4",
+        "yiisoft/test-support": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Benchmark\\": "src"
+        }
+    }
+}
