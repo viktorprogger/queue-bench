@@ -15,6 +15,7 @@ use PhpBench\Attributes\Revs;
 use Psr\Log\NullLogger as LogNullLogger;
 use Yiisoft\Queue\AMQP\Adapter;
 use Yiisoft\Queue\AMQP\QueueProvider;
+use Yiisoft\Queue\AMQP\Settings\Exchange as ExchangeSettings;
 use Yiisoft\Queue\AMQP\Settings\Queue as QueueSettings;
 use Yiisoft\Queue\Cli\SimpleLoop;
 use Yiisoft\Queue\Message\JsonMessageSerializer;
@@ -48,7 +49,8 @@ final class YiisoftQueuePushBench
                 getenv('RABBITMQ_USER'),
                 getenv('RABBITMQ_PASSWORD'),
             ),
-            new QueueSettings()
+            new QueueSettings(durable: true),
+            new ExchangeSettings(exchangeName: 'yiisoft', durable: true),
         )->withMessageProperties(['delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT]);
         $adapter = new Adapter($queueProvider, $serializer, $loop);
 
