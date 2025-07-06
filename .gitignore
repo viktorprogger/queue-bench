@@ -1,6 +1,5 @@
-/.env
-/.idea
-/composer.lock
-/runtime
-/vendor
-/xdebug.log
+.env
+.idea
+composer.lock
+vendor
+xdebug.log
