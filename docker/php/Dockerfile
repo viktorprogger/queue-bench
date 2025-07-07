@@ -13,4 +13,6 @@ COPY composer.* /app/
 WORKDIR /app
 RUN composer install --prefer-dist --no-interaction
 
+RUN echo "opcache.enable_cli=1" > /usr/local/etc/php/conf.d/opcache-cli.ini
+
 ADD . /app
